@@ -104,7 +104,6 @@ public class DriveSubsystem extends SubsystemBase {
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
         Rotation2d.fromDegrees(-m_gyro.getYaw()),
-        //CHANGED: was getAngle
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -174,7 +173,8 @@ public class DriveSubsystem extends SubsystemBase {
     } else {
       xSpeedCommanded = xSpeed;
       ySpeedCommanded = ySpeed;
-      m_currentRotation = rot;
+      //m_currentRotation = rot;
+      //^remove?
     }
 
     // Convert the commanded speeds into the correct units for the drivetrain

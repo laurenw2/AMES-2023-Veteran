@@ -46,7 +46,6 @@ public class RobotContainer {
     configureButtonBindings();
     //TODO: try this
     m_robotDrive.calibrateGyro();
-    m_robotDrive.zeroHeading();
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
