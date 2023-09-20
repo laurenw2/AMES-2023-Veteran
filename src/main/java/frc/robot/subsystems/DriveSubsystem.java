@@ -16,6 +16,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -81,6 +82,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+      SmartDashboard.putNumber("current gyro angle", m_gyro.getAngle());
   }
 
   /**
@@ -224,6 +226,9 @@ public class DriveSubsystem extends SubsystemBase {
   /** Zeroes the heading of the robot. */
   public void zeroHeading() {
     m_gyro.reset();
+  }
+  public void calibrateGyro(){
+    m_gyro.calibrate();
   }
 
   /**

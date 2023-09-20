@@ -50,12 +50,14 @@ public class RobotContainer {
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
+            //TODO: check negatives below
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(-m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(-m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
+            //TODO: try not fieldrelative?
   }
 
   /**
@@ -73,6 +75,7 @@ public class RobotContainer {
             () -> m_robotDrive.setX(),
             m_robotDrive));
             //sets wheels in an "x" position to prevent movement
+            //A button driver
   }
 
   /**
