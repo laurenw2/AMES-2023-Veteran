@@ -46,6 +46,7 @@ public class RobotContainer {
     configureButtonBindings();
     //TODO: try this
     m_robotDrive.calibrateGyro();
+    m_robotDrive.zeroHeading();
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
@@ -57,7 +58,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(-m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(-m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true),
+                false, true),
             m_robotDrive));
             //TODO: try not fieldrelative?
   }
