@@ -148,6 +148,7 @@ public class DriveSubsystem extends SubsystemBase {
       if (angleDif < 0.45*Math.PI) {
         m_currentTranslationDir = SwerveUtils.StepTowardsCircular(m_currentTranslationDir, inputTranslationDir, directionSlewRate * elapsedTime);
         m_currentTranslationMag = m_magLimiter.calculate(inputTranslationMag);
+        //take shortest path possible to desired pose
       }
       else if (angleDif > 0.85*Math.PI) {
         if (m_currentTranslationMag > 1e-4) { //some small number to avoid floating-point errors with equality checking
@@ -157,6 +158,7 @@ public class DriveSubsystem extends SubsystemBase {
         else {
           m_currentTranslationDir = SwerveUtils.WrapAngle(m_currentTranslationDir + Math.PI);
           m_currentTranslationMag = m_magLimiter.calculate(inputTranslationMag);
+          //wraps angle to lie within 2pi
         }
       }
       else {
