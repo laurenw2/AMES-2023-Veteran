@@ -65,6 +65,18 @@ public final class Constants {
     public static final boolean kGyroReversed = true;
   }
 
+  public static final class DoingThingsMotorIDs{
+    public static final int climbMotorID = 10;
+
+    public static final int wristMotorID = 21;
+    public static final int armSwingMotorID = 22;
+    public static final int armExtendMotorID1 = 23;
+    public static final int armExtendMotorID2 = 24;
+
+    public static final int clawRunMotorID = 30;
+
+  }
+
   public static final class ModuleConstants {
     // The MAXSwerve module can be configured with one of three pinion gears: 12T, 13T, or 14T.
     // This changes the drive speed of the module (a pinion gear with more teeth will result in a
@@ -143,5 +155,19 @@ public final class Constants {
   public static final class Controls {
     //driver controls
         public static final int setXValue = 1; //A
+    
+        //claw
+        public static final int clawIntakeAxis = 0; //right trigger
+        public static final int clawOuttakeAxis = 0; //left trigger
+
+        //arm positions
+        public static final int armSetToClimbButton = 0; //Y
+        public static final int armSetToGroundButton = 0; //A
+        public static final int armSetToPassButton = 0; //B
+
+        //climbing
+        public static final int climbForwardButton = 0; //R bumper
+        public static final int climbBackwardButton = 0; //L bumper
+    
   }
 }
