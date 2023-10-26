@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.DoingThingsMotorIDs;
+import frc.robot.Constants.MotorIDs;
 
 public class ClawSubsystem extends SubsystemBase {
     //init stuff
@@ -16,7 +16,7 @@ public class ClawSubsystem extends SubsystemBase {
   
   public ClawSubsystem() {
     //motors
-    clawRunMotor = new CANSparkMax(DoingThingsMotorIDs.clawRunMotorID, MotorType.kBrushless);
+    clawRunMotor = new CANSparkMax(MotorIDs.clawRunMotorID, MotorType.kBrushless);
   }
 
   @Override
