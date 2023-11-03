@@ -18,7 +18,13 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.Controls;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ManualArmCommand;
+import frc.robot.commands.ManualClawCommand;
+import frc.robot.commands.ManualWristCommand;
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -34,25 +40,30 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  private final WristSubsystem m_wristSubsystem = new WristSubsystem();
+  private final ClawSubsystem m_clawSubsystem = new ClawSubsystem();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
-
+  XboxController m_operatorController = new XboxController(1);
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    //TODO: try this
     m_robotDrive.calibrateGyro();
 
     // Configure default commands
+    m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, m_operatorController));
+    m_wristSubsystem.setDefaultCommand(new ManualWristCommand(m_wristSubsystem, m_operatorController));
+    m_clawSubsystem.setDefaultCommand(new ManualClawCommand(m_clawSubsystem, m_operatorController));
     m_robotDrive.setDefaultCommand(
+
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
-            //TODO: check negatives below
             () -> m_robotDrive.drive(
                 -MathUtil.applyDeadband(-m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(-m_driverController.getLeftX(), OIConstants.kDriveDeadband),
