@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.MotorIDs;
@@ -71,8 +72,9 @@ public class WristSubsystem extends SubsystemBase {
     wristMotor.set(ControlMode.Position, 0);
   }
 
-  public void moveManual(){
-    wristMotor.set(ControlMode.PercentOutput, 0);
+  public void moveManual(XboxController controller){
+    //left axis wrist up down
+    wristMotor.set(ControlMode.PercentOutput, MotorSpeedsMaxes.wristOpenMaxOutput*controller.getRawAxis(1));
   }
 
   //auto shenanigans

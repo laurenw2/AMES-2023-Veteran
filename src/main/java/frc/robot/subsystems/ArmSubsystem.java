@@ -13,6 +13,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.MotorIDs;
@@ -95,7 +96,23 @@ public class ArmSubsystem extends SubsystemBase {
     armExtendPID.setReference(PositionValues.armExtendOutVal, ControlType.kPosition);
   }
 
-  public void moveManual(){}
+  public void moveManual(XboxController controller){
+    //set arm motors according to axes
+    //swing right joystick
+    armSwingMotor.set(ControlMode.PercentOutput, -MotorSpeedsMaxes.armSwingOpenMaxOutput*controller.getRawAxis(5));
+
+    //extend button A
+    if(controller.getRawButton(1)){
+      armExtendMotor1.set(MotorSpeedsMaxes.armExtendOpenMaxOutput);
+    }
+    //retract button B
+    if(controller.getRawButton(2)){
+      armExtendMotor1.set(-MotorSpeedsMaxes.armExtendOpenMaxOutput);
+    }
+    if(!controller.getRawButton(1)&&!controller.getRawButton(2)){
+      armExtendMotor1.set(0);
+    }
+  }
 
   //auto shenanigans
 
