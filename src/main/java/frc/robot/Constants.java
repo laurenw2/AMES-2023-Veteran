@@ -86,10 +86,13 @@ public final class Constants {
       public static final double climbRunSpeed = 0.2;
 
       public static final double wristClosedRamp = 0.4;
+      public static final double wristOpenRamp = 0.4; 
       public static final double wristClosedMaxOutput = 0.4;
       public static final double armSwingClosedRamp = 0.4;
+      public static final double armSwingOpenRamp = 0.4;
       public static final double armSwingClosedMaxOutput = 0.4;
       public static final double armExtendClosedRamp = 0.4;
+      public static final double armExtendOpenRamp = 0.4;
       public static final double armExtendClosedMaxOutput = 0.3;
 
       public static final double wristOpenMaxOutput = 0.4;

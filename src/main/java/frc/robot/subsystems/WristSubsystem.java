@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import java.lang.ModuleLayer.Controller;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -36,6 +34,7 @@ public class WristSubsystem extends SubsystemBase {
     //config max output, safety
       wristMotor.configClosedLoopPeakOutput(0, MotorSpeedsMaxes.wristClosedMaxOutput);
       wristMotor.configClosedloopRamp(MotorSpeedsMaxes.wristClosedRamp);
+      wristMotor.configOpenloopRamp(MotorSpeedsMaxes.wristOpenRamp);
       wristMotor.configPeakOutputForward(MotorSpeedsMaxes.wristOpenMaxOutput);
       wristMotor.configPeakOutputReverse(-MotorSpeedsMaxes.wristOpenMaxOutput);
 

@@ -54,8 +54,11 @@ public class ArmSubsystem extends SubsystemBase {
     //config max output, safety
       armSwingMotor.configClosedloopRamp(MotorSpeedsMaxes.armSwingClosedRamp);
       armSwingMotor.configClosedLoopPeakOutput(0, MotorSpeedsMaxes.armSwingClosedMaxOutput);
+      armSwingMotor.configOpenloopRamp(MotorSpeedsMaxes.armSwingOpenRamp);
       armExtendMotor1.setClosedLoopRampRate(MotorSpeedsMaxes.armExtendClosedRamp);
       armExtendMotor2.setClosedLoopRampRate(MotorSpeedsMaxes.armExtendClosedRamp);
+      armExtendMotor1.setOpenLoopRampRate(MotorSpeedsMaxes.armExtendOpenRamp);
+      armExtendMotor2.setOpenLoopRampRate(MotorSpeedsMaxes.armExtendOpenRamp);
       armExtendPID.setOutputRange(-MotorSpeedsMaxes.armExtendClosedMaxOutput, MotorSpeedsMaxes.armExtendClosedMaxOutput);
 
   }
