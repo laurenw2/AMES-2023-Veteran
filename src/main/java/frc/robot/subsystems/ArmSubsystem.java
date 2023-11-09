@@ -33,6 +33,7 @@ public class ArmSubsystem extends SubsystemBase {
   public ArmSubsystem() {
     //motors/encoders
       armSwingMotor = new TalonFX(MotorIDs.armSwingMotorID);
+      armSwingEnc = new TalonFXSensorCollection(armSwingMotor);
       armExtendMotor1 = new CANSparkMax(MotorIDs.armExtendMotorID1, MotorType.kBrushless);
       armExtendMotor2 = new CANSparkMax(MotorIDs.armExtendMotorID2, MotorType.kBrushless);
       armExtendEncoder = armExtendMotor1.getEncoder();
@@ -102,19 +103,21 @@ public class ArmSubsystem extends SubsystemBase {
   public void moveManual(XboxController controller){
     //set arm motors according to axes
     //swing right joystick
-    armSwingMotor.set(ControlMode.PercentOutput, -MotorSpeedsMaxes.armSwingOpenMaxOutput*controller.getRawAxis(5));
+
+    armSwingMotor.set(ControlMode.PercentOutput, MotorSpeedsMaxes.armSwingOpenMaxOutput*controller.getRawAxis(5));
 
     //extend button A
     if(controller.getRawButton(1)){
-      armExtendMotor1.set(MotorSpeedsMaxes.armExtendOpenMaxOutput);
+      armExtendMotor1.set(-MotorSpeedsMaxes.armExtendOpenMaxOutput);
     }
     //retract button B
     if(controller.getRawButton(2)){
-      armExtendMotor1.set(-MotorSpeedsMaxes.armExtendOpenMaxOutput);
+      armExtendMotor1.set(MotorSpeedsMaxes.armExtendOpenMaxOutput);
     }
     if(!controller.getRawButton(1)&&!controller.getRawButton(2)){
       armExtendMotor1.set(0);
     }
+    
   }
 
   //auto shenanigans

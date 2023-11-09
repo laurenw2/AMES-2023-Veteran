@@ -82,7 +82,7 @@ public final class Constants {
   }
 
   public static final class MotorSpeedsMaxes{
-      public static final double clawRunSpeed = 0.25;
+      public static final double clawRunSpeed = 0.8;
       public static final double climbRunSpeed = 0.2;
 
       public static final double wristClosedRamp = 0.4;

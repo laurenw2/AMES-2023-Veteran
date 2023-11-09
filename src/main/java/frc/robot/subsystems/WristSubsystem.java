@@ -73,7 +73,7 @@ public class WristSubsystem extends SubsystemBase {
 
   public void moveManual(XboxController controller){
     //left axis wrist up down
-    wristMotor.set(ControlMode.PercentOutput, MotorSpeedsMaxes.wristOpenMaxOutput*controller.getRawAxis(1));
+    wristMotor.set(ControlMode.PercentOutput, -MotorSpeedsMaxes.wristOpenMaxOutput*controller.getRawAxis(1));
   }
 
   //auto shenanigans

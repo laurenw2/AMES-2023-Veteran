@@ -73,15 +73,7 @@ public class RobotContainer {
             //TODO: try not fieldrelative?
   }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be
-   * created by
-   * instantiating a {@link edu.wpi.first.wpilibj.GenericHID} or one of its
-   * subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then calling
-   * passing it to a
-   * {@link JoystickButton}.
-   */
+  
   private void configureButtonBindings() {
     new JoystickButton(m_driverController, Controls.setXValue)
         .whileTrue(new RunCommand(
@@ -91,11 +83,7 @@ public class RobotContainer {
             //A button driver
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
+  
   public Command getAutonomousCommand() {
     // Create config for trajectory
     TrajectoryConfig config = new TrajectoryConfig(
