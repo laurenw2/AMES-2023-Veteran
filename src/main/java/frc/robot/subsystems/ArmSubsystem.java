@@ -47,11 +47,7 @@ public class ArmSubsystem extends SubsystemBase {
       armSwingMotor.config_kI(0, MotorPIDConstants.armSwingMotorkI);
       armSwingMotor.config_kD(0, MotorPIDConstants.armSwingMotorkD);
 
-      armExtendPID.setFF(MotorPIDConstants.armExtendkF);
-      armExtendPID.setP(MotorPIDConstants.armExtendkP);
-      armExtendPID.setI(MotorPIDConstants.armExtendkI);
-      armExtendPID.setD(MotorPIDConstants.armExtendkD);
-
+ 
     //config max output, safety
       armSwingMotor.configClosedloopRamp(MotorSpeedsMaxes.armSwingClosedRamp);
       armSwingMotor.configClosedLoopPeakOutput(0, MotorSpeedsMaxes.armSwingClosedMaxOutput);
@@ -85,19 +81,9 @@ public class ArmSubsystem extends SubsystemBase {
     armSwingMotor.set(ControlMode.Position, PositionValues.armSwingScoreVal);
   }
 
-  public void setSwingClimb(){
+  public void setSwingIntake(){
     //set swing motor to climb encoder position
-    armSwingMotor.set(ControlMode.Position, PositionValues.armSwingClimbVal);
-  }
-
-  public void setExtendIn(){
-    //set extend motor to "in" position
-    armExtendPID.setReference(PositionValues.armExtendInVal, ControlType.kPosition);
-  }
-
-  public void setExtendOut(){
-    //set extend motor to "out" position
-    armExtendPID.setReference(PositionValues.armExtendOutVal, ControlType.kPosition);
+    armSwingMotor.set(ControlMode.Position, PositionValues.armSwingIntakeVal);
   }
 
   public void moveManual(XboxController controller){

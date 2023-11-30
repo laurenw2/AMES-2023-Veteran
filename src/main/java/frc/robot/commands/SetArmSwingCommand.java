@@ -23,8 +23,8 @@ public class SetArmSwingCommand extends CommandBase{
         if(m_armHeight == "score"){
             m_armSubsystem.setSwingScore();
         }
-        if(m_armHeight == "climb"){
-            m_armSubsystem.setSwingClimb();
+        if(m_armHeight == "intake"){
+            m_armSubsystem.setSwingIntake();
         }
         if(m_armHeight == "home"){
             m_armSubsystem.setSwingHome();

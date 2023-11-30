@@ -17,12 +17,10 @@ public class ManualWristCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        //m_wristSubsystem.resetEncoders();
     }
         
     @Override
     public void execute() {
-       // m_wristSubsystem.resetEncoders();
         m_wristSubsystem.moveManual(m_controller);
     }
 

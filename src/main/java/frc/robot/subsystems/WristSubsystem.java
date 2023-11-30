@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.MotorIDs;
 import frc.robot.Constants.MotorPIDConstants;
 import frc.robot.Constants.MotorSpeedsMaxes;
+import frc.robot.Constants.PositionValues;
 
 public class WristSubsystem extends SubsystemBase {
     //init stuff
@@ -53,17 +54,17 @@ public class WristSubsystem extends SubsystemBase {
 
   public void setHome(){
     //set to home encoder position
-    wristMotor.set(ControlMode.Position, 0);    
+    wristMotor.set(ControlMode.Position, PositionValues.wristHomeVal);    
   }
 
   public void setIntake(){
     //set to intake encoder position
-    wristMotor.set(ControlMode.Position, 0);
+    wristMotor.set(ControlMode.Position, PositionValues.wristIntakeVal);
   }
 
   public void setScore(){
     //set to score encoder position
-    wristMotor.set(ControlMode.Position, 0);
+    wristMotor.set(ControlMode.Position, PositionValues.wristScoreVal);
   }
 
   public void setClimb(){
