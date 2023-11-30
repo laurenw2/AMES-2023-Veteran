@@ -16,11 +16,11 @@ public final class Constants {
       // Driving Parameters - Note that these are not the maximum capable speeds of
       // the robot, rather the allowed maximum speeds
       public static final double kMaxSpeedMetersPerSecond = 6.6;
-      public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+      public static final double kMaxAngularSpeed = 1.85 * Math.PI; // radians per second
 
       public static final double kDirectionSlewRate = 1.2; // radians per second
       public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%)
-      public static final double kRotationalSlewRate = 1.0; // percent per second (1 = 100%)
+      public static final double kRotationalSlewRate = 0.85; // percent per second (1 = 100%)
 
       // Chassis configuration
       public static final double kTrackWidth = Units.inchesToMeters(27.5);
@@ -65,32 +65,27 @@ public final class Constants {
   }
 
   public static final class MotorPIDConstants{
-      public static final int wristMotorkF = 0;
-      public static final int wristMotorkP = 0;
-      public static final int wristMotorkI = 0;
-      public static final int wristMotorkD = 0;
+      public static final double wristMotorkF = 0;
+      public static final double wristMotorkP = 0.1;
+      public static final double wristMotorkI = 0;
+      public static final double wristMotorkD = 0.02;
 
-      public static final int armSwingMotorkF = 0;
-      public static final int armSwingMotorkP = 0;
-      public static final int armSwingMotorkI = 0;
-      public static final int armSwingMotorkD = 0;
-
-      public static final int armExtendkF = 0;
-      public static final int armExtendkP = 0;
-      public static final int armExtendkI = 0;
-      public static final int armExtendkD = 0;
+      public static final double armSwingMotorkF = 0;
+      public static final double armSwingMotorkP = 0.1;
+      public static final double armSwingMotorkI = 0;
+      public static final double armSwingMotorkD = 0.06;
   }
 
   public static final class MotorSpeedsMaxes{
       public static final double clawRunSpeed = 0.8;
       public static final double climbRunSpeed = 0.2;
 
-      public static final double wristClosedRamp = 0.4;
-      public static final double wristOpenRamp = 0.4; 
-      public static final double wristClosedMaxOutput = 0.4;
+      public static final double wristClosedRamp = 0.6;
+      public static final double wristOpenRamp = 0.2; 
+      public static final double wristClosedMaxOutput = 0.25;
       public static final double armSwingClosedRamp = 0.4;
       public static final double armSwingOpenRamp = 0.4;
-      public static final double armSwingClosedMaxOutput = 0.4;
+      public static final double armSwingClosedMaxOutput = 0.5;
       public static final double armExtendClosedRamp = 0.4;
       public static final double armExtendOpenRamp = 0.4;
       public static final double armExtendClosedMaxOutput = 0.3;
@@ -102,16 +97,16 @@ public final class Constants {
   }
 
   public static final class PositionValues{
-      public static final double armSwingHomeVal = 0;
-      public static final double armSwingScoreVal = 0;
-      public static final double armSwingClimbVal = 0;
+      public static final double armSwingHomeVal = -160000; //try
+      public static final double armSwingScoreVal = -60000;
+      public static final double armSwingIntakeVal = -130000;
 
       public static final double armExtendOutVal = 0;
       public static final double armExtendInVal = 0;
 
-      public static final double wristHomeVal = 0;
-      public static final double wristIntakeVal = 0;
-      public static final double wristScoreVal = 0;
+      public static final double wristHomeVal = -19500; //try
+      public static final double wristIntakeVal = 8000; //try
+      public static final double wristScoreVal = 11000;
       public static final double wristClimbVal = 0;
   }
 
@@ -192,16 +187,16 @@ public final class Constants {
 
   public static final class Controls {
     //driver controls
-        public static final int setXValue = 1; //A
+        public static final int setXValue = 3; //X
     
         //claw
         public static final int clawIntakeAxis = 0; //right trigger
         public static final int clawOuttakeAxis = 0; //left trigger
 
         //arm positions
-        public static final int armSetToClimbButton = 0; //Y
-        public static final int armSetToGroundButton = 0; //A
-        public static final int armSetToPassButton = 0; //B
+        public static final int armSetToScoreButton = 4; //Y
+        public static final int armSetToHomeButton = 1; //A
+        public static final int armSetToPickupButton = 2; //B
 
         //climbing
         public static final int climbForwardButton = 0; //R bumper

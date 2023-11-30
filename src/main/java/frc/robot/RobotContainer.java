@@ -14,6 +14,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.Controls;
 import frc.robot.Constants.DriveConstants;
@@ -21,13 +22,17 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ManualClawCommand;
 import frc.robot.commands.ManualWristCommand;
+import frc.robot.commands.SetArmSwingCommand;
+import frc.robot.commands.SetWristCommand;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
@@ -47,6 +52,18 @@ public class RobotContainer {
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
   XboxController m_operatorController = new XboxController(1);
+
+  SendableChooser m_chooser = new SendableChooser<>();
+
+  // Create config for trajectory
+  TrajectoryConfig config = new TrajectoryConfig(
+    AutoConstants.kMaxSpeedMetersPerSecond,
+    AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+    // Add kinematics to ensure max speed is actually obeyed
+    .setKinematics(DriveConstants.kDriveKinematics);
+    
+
+  
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -55,10 +72,11 @@ public class RobotContainer {
     configureButtonBindings();
     m_robotDrive.calibrateGyro();
 
+    //auto
+    m_chooser.setDefaultOption("do nothing", m_armSubsystem);
+
     // Configure default commands
-    m_armSubsystem.setDefaultCommand(new ManualArmCommand(m_armSubsystem, m_operatorController));
-    m_wristSubsystem.setDefaultCommand(new ManualWristCommand(m_wristSubsystem, m_operatorController));
-    m_clawSubsystem.setDefaultCommand(new ManualClawCommand(m_clawSubsystem, m_operatorController));
+    m_clawSubsystem.setDefaultCommand(new ManualClawCommand(m_clawSubsystem, m_driverController));
     m_robotDrive.setDefaultCommand(
 
         // The left stick controls translation of the robot.
@@ -79,7 +97,22 @@ public class RobotContainer {
             () -> m_robotDrive.setX(),
             m_robotDrive));
             //sets wheels in an "x" position to prevent movement
-            //A button driver
+            //X button driver
+    //A home driver
+    new JoystickButton(m_driverController, Controls.armSetToHomeButton)
+    .whileTrue(new SequentialCommandGroup(new SetArmSwingCommand(m_armSubsystem, "home"),
+    new SetWristCommand(m_wristSubsystem, "home")));
+
+    //Y score driver 
+    new JoystickButton(m_driverController, Controls.armSetToScoreButton)
+    .whileTrue(new SequentialCommandGroup(new SetArmSwingCommand(m_armSubsystem, "score"),
+    new SetWristCommand(m_wristSubsystem, "score")));
+
+    //B intake driver
+    new JoystickButton(m_driverController, Controls.armSetToPickupButton)
+    .whileTrue(new SequentialCommandGroup(new SetWristCommand(m_wristSubsystem, "intake"),
+    new SetArmSwingCommand(m_armSubsystem, "intake")));
+    
   }
 
   
